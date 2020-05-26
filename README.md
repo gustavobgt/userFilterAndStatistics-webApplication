@@ -3,7 +3,7 @@
 ## Layout do projeto
 
 <p align="center">
-<img src="https://github.com/gustavobgt/Facebook-clone/blob/master/img/layout.png" width="650px">
+<img src="https://github.com/gustavobgt/userFilterAndStatistics-webApplication/blob/master/img/layout.png" width="650px">
 </p>
 
 ## Descrição
