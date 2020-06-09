@@ -100,16 +100,8 @@ function preLoader(startOrEnd) {
 
   if (startOrEnd === 'starting-search') {
     preLoader.innerHTML = `
-  <div class="preloader-wrapper small active">
-    <div class="spinner-layer spinner-green-only">
-      <div class="circle-clipper left">
-        <div class="circle"></div>
-      </div><div class="gap-patch">
-        <div class="circle"></div>
-      </div><div class="circle-clipper right">
-        <div class="circle"></div>
-      </div>
-    </div>
+    <div class="spinner-border text-secondary mb-3" role="status">
+    <span class="sr-only">Loading...</span>
   </div>
   `;
     return;
@@ -135,7 +127,7 @@ function renderFilteredUsers() {
     const { name, age, picture } = user;
 
     const userHTML = `
-    <div class='user'>
+    <div class='user '>
       <div>
         <img src="${picture}" alt ="${name}">
       </div>

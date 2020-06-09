@@ -20,12 +20,6 @@ h6 {
   margin-bottom: 10px;
 }
 
-.user-container {
-  display: flex;
-  margin: 20px auto;
-  width: 100%;
-}
-
 .user {
   border: 1px solid lightgray;
   border-radius: 5px;
@@ -44,10 +38,8 @@ h6 {
 
 #found-users-area {
   padding: 5px;
-  border: 1px solid grey;
-  border-radius: 10px;
   margin-right: 10px;
-  width: 70%;
+  width: 90%;
 }
 
 #filtered-users {
@@ -58,8 +50,6 @@ h6 {
 
 #statistics-area {
   padding: 5px;
-  border: 1px solid grey;
-  border-radius: 10px;
   margin-right: 10px;
   width: 30%;
   height: 210px;
@@ -67,4 +57,9 @@ h6 {
 
 .bold {
   font-weight: bold;
+}
+
+#search-area {
+  padding: 0 0 15px 0;
+  border-bottom: 1px solid #e5e5e5;
 }
