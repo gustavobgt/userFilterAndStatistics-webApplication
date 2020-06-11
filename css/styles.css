@@ -1,48 +1,90 @@
+/* variables */
+
+:root {
+  --warning: #ffc107;
+}
+
+/* animations */
+
+@keyframes user-animation {
+  from {
+    top: 0px;
+    left: 0px;
+  }
+  to {
+    top: 2px;
+    left: 2px;
+  }
+}
+
+/* general-purpose tags */
+
 body {
   padding: 10px;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1 {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
-img {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  margin-left: 10px;
+/* header */
 
-  border-radius: 50%;
+header h1 span {
+  color: var(--warning);
 }
 
-h3 {
+header #search-area {
+  padding: 0 0 15px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* section */
+
+section h3 {
   margin: 10px 0px 20px 10px;
 }
 
-h6 {
-  margin-left: 15px;
-  margin-bottom: 10px;
+section .box-shadow {
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
-.user {
-  box-shadow: 2px 2px #888888;
-  border: 2px solid lightgray;
+/* section-statistics-div */
+
+section #statistics {
+  max-width: 350px;
+}
+
+/* section-users-div */
+
+section #found-users img {
+  width: 50px;
+  height: 50px;
+  margin: 0px;
+  border-radius: 50%;
+}
+
+section #found-users .user {
+  font-size: 2em;
+  width: 230px;
+  border: 1.5px solid var(--warning);
   border-radius: 5px;
   padding: 5px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 
-.user:hover {
-  box-shadow: none;
-  background-color: #007bff;
+section #found-users .user:hover {
+  background-color: darksalmon;
   color: white;
-  transition: all 0.8s;
-  cursor: pointer;
+  box-shadow: none;
+  position: relative;
+  transition: all 1s;
+  animation: user-animation 0.2s 0s forwards;
 }
 
-#search-area {
-  padding: 0 0 15px 0;
-  border-bottom: 1px solid #e5e5e5;
+section #found-users .box-shadow {
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Meta tags Obrigatórias -->
+    <!-- Meta tags -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -24,29 +24,33 @@
       crossorigin="anonymous"
     />
 
+    <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap"
       rel="stylesheet"
     />
 
+    <!-- Styles -->
     <link rel="stylesheet" href="./css/styles.css" />
 
     <title>Username Search</title>
   </head>
   <body class="bg-secondary">
-    <!-- Início do header -->
+    <!-- start header -->
     <header>
       <div class="container text-center">
         <div>
           <a href="" class="text-light">
             <i class="fas fa-users fa-5x"></i>
           </a>
-          <h1 class="text-light">
-            Username Search
-          </h1>
+          <h1 class="text-light">Username <span>Search</span></h1>
         </div>
 
-        <div id="pre-loader" class="center"></div>
+        <div id="pre-loader" class="center">
+          <div class="spinner-border text-light mb-3" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
 
         <div id="search-area">
           <div class="container text-center">
@@ -63,7 +67,7 @@
                 <button
                   type="button"
                   id="search-button"
-                  class="btn btn-primary"
+                  class="btn btn-warning text-light"
                   disabled
                 >
                   SEARCH
@@ -74,56 +78,37 @@
         </div>
       </div>
     </header>
-    <!-- /Fim do header -->
+    <!-- /end header -->
 
-    <!-- <section class="caixa">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <img class="img-fluid" src="./assets/img/juros.png" alt="juros" />
-          </div>
-          <div class="col-md-6 d-flex">
-            <div class="align-self-center">
-              <h2>Pare de pagar juros e economize</h2>
-              <p>
-                Mater as contas em dia é sempre um problema? O Finans avisa a
-                você: receba alertas de contas a pagar e a receber!
-              </p>
-              <a href="" class="btn btn-primary">Veja mais</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>-->
+    <!-- start section -->
     <section class="mt-3">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-4 mb-3">
-            <div
-              id="statistics-area"
-              class="text-center bg-light border border-dark rounded"
-            >
-              <h3 id="statistics-title">
+      <div class="container-xl p-0">
+        <div class="row d-flex justify-content-center">
+          <!-- start statistics-div -->
+          <div id="statistics" class="col-lg-4 mb-3">
+            <div class="box-shadow bg-light border border-dark rounded">
+              <h3 id="statistics-title" class="text-center">
                 Nothing to display
               </h3>
-              <div id="users-statistics"></div>
+              <div id="users-statistics" class="m-3"></div>
             </div>
           </div>
-          <div class="col-sm-8">
-            <div
-              id="found-users-area"
-              class="bg-light border border-dark rounded"
-            >
-              <h3 id="filter-title" class="text-center">No Users Found</h3>
-              <div id="filtered-users" class="mx-2"></div>
+          <!-- /end statistics-div -->
+
+          <!-- start users-div -->
+          <div class="col-lg-8">
+            <div class="box-shadow bg-light border border-dark rounded">
+              <h3 id="users-title" class="text-center">No Users Found</h3>
+              <div id="found-users" class="m-2"></div>
             </div>
           </div>
+          <!-- /end users-div -->
         </div>
       </div>
     </section>
+    <!-- /end section -->
 
-    <!-- JavaScript (Opcional) -->
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <!-- Scripts -->
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

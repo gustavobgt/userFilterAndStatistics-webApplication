@@ -1,10 +1,10 @@
 let allUsersList = [];
-let filteredUsersList = [];
+let foundUsersList = [];
 
-let filterTitle = null;
+let usersTitle = null;
 let statisticsTitle = null;
 
-let filteredUsers = null;
+let foundUsers = null;
 let userStatistics = null;
 
 let inputSearch = null;
@@ -12,7 +12,8 @@ let searchButton = null;
 
 window.addEventListener('load', () => {
   function searchUsers(event) {
-    let hasText = !!event.target.value && event.target.value.trim() !== '';
+    const hasText = !!event.target.value && event.target.value.trim() !== '';
+
     if (!hasText) {
       searchButton.setAttribute('disabled', '');
       clearInput();
@@ -22,10 +23,11 @@ window.addEventListener('load', () => {
 
     searchButton.removeAttribute('disabled');
 
-    filteredUsersList = allUsersList
+    const lowerCaseInput = event.target.value.toLowerCase();
+
+    foundUsersList = allUsersList
       .filter((user) => {
         const lowerCaseName = user.name.toLowerCase();
-        const lowerCaseInput = event.target.value.toLowerCase();
 
         return lowerCaseName.includes(lowerCaseInput);
       })
@@ -48,17 +50,17 @@ window.addEventListener('load', () => {
   inputSearch.addEventListener('keyup', searchUsers);
   searchButton.addEventListener('click', insertUsers);
 
-  filterTitle = document.querySelector('#filter-title');
+  usersTitle = document.querySelector('#users-title');
   statisticsTitle = document.querySelector('#statistics-title');
 
-  filteredUsers = document.querySelector('#filtered-users');
+  foundUsers = document.querySelector('#found-users');
   userStatistics = document.querySelector('#users-statistics');
 
   fetchUsers();
 });
 
 async function fetchUsers() {
-  preLoader('starting-search');
+  const preLoader = document.querySelector('#pre-loader');
 
   // prettier-ignore
   const res = await fetch
@@ -76,54 +78,45 @@ async function fetchUsers() {
     };
   });
 
-  preLoader('');
+  preLoader.innerHTML = '';
 
   console.log('Users loaded successfully!');
 
   inputSearch.focus();
 }
 
-function preLoader(startOrEnd) {
-  const preLoader = document.querySelector('#pre-loader');
-
-  if (startOrEnd === 'starting-search') {
-    preLoader.innerHTML = `
-    <div class="spinner-border text-light mb-3" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-  `;
-    return;
-  }
-
-  preLoader.innerHTML = '';
-}
-
 function render() {
-  renderFilteredUsers();
+  renderFoundUsers();
   renderUsersStatistics();
 }
 
-function renderFilteredUsers() {
-  filteredUsers.innerHTML = '';
-  filterTitle.innerHTML = '';
+function renderFoundUsers() {
+  foundUsers.innerHTML = '';
+  usersTitle.innerHTML = '';
 
-  filterTitle.textContent = `👤 ${filteredUsersList.length} user(s) found`;
+  usersTitle.textContent = `👥 ${foundUsersList.length} user(s) found`;
 
   let usersHTML = `<div class="container">
                        <div class="row">`;
 
-  filteredUsersList.forEach((user) => {
+  foundUsersList.forEach((user) => {
     const { name, age, picture } = user;
 
     const userHTML = `
-    <div class="col-md-6 p-2">
-        <div class='user'>
+    <div class="col-6 col-md-4 p-2 d-flex justify-content-center">
+        <div class='user box-shadow px-0'>
           <div>
             <img src="${picture}" alt ="${name}">
           </div>
-          <div class="text-center">
-            <h6>${name} <br> ${age} years old</h6>
-          </div>
+          <div class="text-center ml-1">
+            <h6 class="font-weight-bold mb-0" style="font-size: 0.42em">${name} <br>
+            <span class="font-weight-normal"> ${age} years old </span>
+            </h6>
+          </div>         
+          
+            <a href="#" class="text-warning ml-1">
+              <i class="fas fa-thumbs-up fa-xs"></i>
+            </a>
         </div>
     </div>
     `;
@@ -132,37 +125,40 @@ function renderFilteredUsers() {
   });
 
   usersHTML += `</div>
-  </div>`;
-  filteredUsers.innerHTML = usersHTML;
+                  </div>`;
+  foundUsers.innerHTML = usersHTML;
 }
 
 function renderUsersStatistics() {
   userStatistics.innerHTML = '';
   statisticsTitle.innerHTML = '';
 
-  statisticsTitle.textContent = `Statistics`;
+  statisticsTitle.textContent = `📋 Statistics`;
 
-  const numberOfMales = filteredUsersList.reduce((accumulator, current) => {
+  const numberOfMales = foundUsersList.reduce((accumulator, current) => {
     const total = current.gender === 'male' ? accumulator + 1 : accumulator;
     return total;
   }, 0);
 
-  const numberOfFemales = filteredUsersList.length - numberOfMales;
+  const numberOfFemales = foundUsersList.length - numberOfMales;
 
-  const sumOfAges = filteredUsersList.reduce((accumulator, current) => {
+  const sumOfAges = foundUsersList.reduce((accumulator, current) => {
     return accumulator + current.age;
   }, 0);
 
   const avarageAges =
-    sumOfAges > 0 ? (sumOfAges / filteredUsersList.length).toFixed(2) : 0;
+    sumOfAges > 0 ? (sumOfAges / foundUsersList.length).toFixed(2) : 0;
 
   const statisticsHTML = `
-  <div>
-    <h6><span class="font-weight-bold">Male(s):</span> ${numberOfMales} people(s)</h6>
-    <h6><span class="font-weight-bold">Female(s):</span> ${numberOfFemales} people(s)</h6>
-    <h6><span class="font-weight-bold">Sum of Ages:</span> ${sumOfAges} years old</h6>
-    <h6><span class="font-weight-bold">Average Ages:</span> ${avarageAges} years old</h6>
+  <div class="d-flex justify-content-center">
+    <div>
+      <h6><span class="font-weight-bold">👦 Male(s):</span> ${numberOfMales} people(s)</h6>
+      <h6><span class="font-weight-bold">👧 Female(s):</span> ${numberOfFemales} people(s)</h6>
+      <h6><span class="font-weight-bold">👴🧓 Sum of Ages:</span> ${sumOfAges} years old</h6>
+      <h6><span class="font-weight-bold">👨👩 Average Ages:</span> ${avarageAges} years old</h6>
+    </div>
   </div>
+
   `;
 
   userStatistics.innerHTML = statisticsHTML;
