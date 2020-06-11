@@ -8,14 +8,14 @@ It has a responsive web design making the web page render well on a variety of d
 You can try it out here: <a href="https://gustavobgt.github.io/username-search/">web-application</a>
 
 ## Screenshots
--Desktop display
+- Desktop display
 <p align="center">
 <img src="https://github.com/gustavobgt/userFilterAndStatistics-webApplication/blob/master/assets/img/desktop-display.png" width="650px">
 </p>
 
--Mobile display
+- Mobile display
 <p align="center">
-<img src="https://github.com/gustavobgt/userFilterAndStatistics-webApplication/blob/master/assets/img/mobile-display.png" width="650px">
+<img src="https://github.com/gustavobgt/userFilterAndStatistics-webApplication/blob/master/assets/img/mobile-display.png" height="450px">
 </p>
 
 ## 🚀 Technologies
